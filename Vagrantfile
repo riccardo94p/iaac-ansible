@@ -1,6 +1,12 @@
+# Install vagrant-disksize to allow resizing the vagrant box disk.
+unless Vagrant.has_plugin?("vagrant-disksize")
+    raise "vagrant-disksize plugin is missing. Please install it using 'vagrant plugin install vagrant-disksize' and rerun 'vagrant up'"
+end
+
 Vagrant.configure("2") do |config|
 	# Automatically downloads CentOS image from Vagrant cloud
 	config.vm.box = "centos/7"
+	config.disksize.size = "50GB"
 		
 	config.vm.provider "virtualbox" do |vb|
 		vb.memory = "2048"

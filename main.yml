@@ -1,5 +1,19 @@
 ---
 - hosts: all
-  tasks:
-  - name: Test ping
-    ping:
+  become: true
+  tasks:    
+  # Example on how to read info and reuse it in subsequent task
+  - name: Read device information (always use unit when probing)
+    parted: device=/dev/sda1 unit=GiB
+    register: sda_info
+# TO-DO:
+# sda_info has an array of partitions. find the main partition and check that size  
+  #- name: Get disk size
+    #set_fact:
+      #size: "{{ sda_info.size }}"
+    
+  #- name: Resize partition if size is less than 40GiB
+    #shell: "echo test"
+    #when: size|float < 40
+  - debug:
+      var: sda_info

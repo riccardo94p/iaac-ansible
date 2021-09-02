@@ -9,6 +9,9 @@ Ansible playbook to provision 2 CentOS VMs, install Docker on them and configure
 * [Vagrant](https://www.vagrantup.com/)
 
 ### How to Run
+First, make sure you install the required collections from Ansible-Galaxy: `ansible-galaxy install -r collections/requirements.yml`
+
+Then, run the script as follows:
 `vagrant up && ansible-playbook -i hosts main.yml`
 
 ## Source Material
