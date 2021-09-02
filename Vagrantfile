@@ -22,10 +22,4 @@ Vagrant.configure("2") do |config|
 		vm2.vm.hostname = "vm2.example.com"
 		vm2.vm.network "private_network", ip: "192.168.33.11"
 	end
-	
-	# Tell the VM we want tu run Ansible on it
-	# ansible_local means that it will run Ansible inside the VM
-	#config.vm.provision "ansible_local" do |ansible|
-	#	ansible.playbook = "main.yaml"
-	#end
 end

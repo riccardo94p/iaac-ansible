@@ -4,16 +4,27 @@
   tasks:    
   # Example on how to read info and reuse it in subsequent task
   - name: Read device information (always use unit when probing)
-    parted: device=/dev/sda1 unit=GiB
+    parted:
+      device: /dev/sda
+      number: 1
+      unit: GiB
     register: sda_info
-# TO-DO:
-# sda_info has an array of partitions. find the main partition and check that size  
-  #- name: Get disk size
-    #set_fact:
-      #size: "{{ sda_info.size }}"
     
-  #- name: Resize partition if size is less than 40GiB
-    #shell: "echo test"
-    #when: size|float < 40
-  - debug:
-      var: sda_info
+  - name: Disk size check (resize if under 40GiB)
+    shell: |
+      parted
+      select /dev/sda
+      resizepart
+      1
+      40000
+      quit
+    #fail:
+      #msg: "VM's Disk size is less than 40GiB. Please increase it in the Vagrantfile."
+    when: sda_info.disk.size|int < 40
+    
+  - name: Resize FileSystem if available space is < 40GiB
+    shell: "xfs_growfs /"
+    when: sda_info.disk.size|int < 40
+
+  #- debug:
+      #var: sda_info.partitions[0].size
