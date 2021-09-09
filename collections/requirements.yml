@@ -2,3 +2,9 @@
 collections:
   - name: community.general.parted
     source: https://galaxy.ansible.com
+
+roles:
+  #- name: atosatto.docker-swarm
+  #- src: https://github.com/atosatto/ansible-dockerswarm
+  - name: geerlingguy.docker
+    src: https://github.com/geerlingguy/ansible-role-docker

@@ -1,0 +1,23 @@
+---
+- name: Read device information (always use unit when probing)
+  parted:
+    device: /dev/sda
+    number: 1
+    unit: GiB
+  register: sda_info
+  
+- name: Disk size check (resize if under 40GiB)
+  shell: |
+    parted
+    select /dev/sda
+    resizepart
+    1
+    40000
+    quit
+  #fail:
+    #msg: "VM's Disk size is less than 40GiB. Please increase it in the Vagrantfile."
+  when: sda_info.disk.size|int < 40
+  
+- name: Resize FileSystem if available space is < 40GiB
+  shell: "xfs_growfs /"
+  when: sda_info.disk.size|int < 40
