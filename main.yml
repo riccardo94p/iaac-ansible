@@ -4,6 +4,5 @@
   tasks:
     - import_role:
         name: diskconfig
-    #- import_role:
-    #    name: geerlingguy.docker
-    #    name: nickjj.docker
+    - import_role:
+        name: atosatto.docker-swarm
