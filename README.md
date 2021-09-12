@@ -18,3 +18,4 @@ Then, run the script as follows:
 * Ansible From Beginner to Pro, M. Heap, Apress 2016
 * [6 practices for super smooth Ansible experience](https://max.engineer/six-ansible-practices)
 * [Ansible Linting with GitHub Actions CI/CD](https://www.ansible.com/blog/ansible-linting-with-github-actions)
+* [Ansible Role for installing Docker & Docker Swarm](https://github.com/atosatto/ansible-dockerswarm)
