@@ -14,6 +14,9 @@ First, make sure you install the required collections from Ansible-Galaxy: `ansi
 Then, run the script as follows:
 `vagrant up && ansible-playbook -i hosts main.yml`
 
+## To-Do
+Fix an issue that prevents worker node from joining the Docker Swarm.
+
 ## Source Material
 * Ansible From Beginner to Pro, M. Heap, Apress 2016
 * [6 practices for super smooth Ansible experience](https://max.engineer/six-ansible-practices)
